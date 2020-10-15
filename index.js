@@ -66,7 +66,7 @@ async function getEmploy(req,res,next){
 
         const response = await pool.query('SELECT * FROM employ WHERE id = $1',[id])
 
-        console.log(response)
+        // console.log(response)
 
         const data = await response.json()
 
@@ -93,19 +93,19 @@ async function getEmploy(req,res,next){
 //     }
 // }
 
-function cache(req, res, next){
-    const {id} = req.params
+// function cache(req, res, next){
+//     const {id} = req.params
 
-    client.get(id, (err, data) => {
-        if(err) throw err;
+//     client.get(id, (err, data) => {
+//         if(err) throw err;
 
-        if(data !== null){
-            res.send(id, data)
-        }else {
-            next()
-        }
-    })
-}
+//         if(data !== null){
+//             res.send(id, data)
+//         }else {
+//             next()
+//         }
+//     })
+// }
 
 // Tambah Data
 // app.post('/employs', async(req,res) => {
@@ -123,7 +123,7 @@ function cache(req, res, next){
 //     }
 // })
 
-app.get('/employs/:id', cache, getEmploy)
+// app.get('/employs/:id', cache, getEmploy)
 app.get('/repos/:username', cache, getRepos)
 
 app.listen(PORT, () => {
